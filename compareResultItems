@@ -1,0 +1,126 @@
+<apex:page standardstylesheets="false" sidebar="false" docType="html-5.0">
+
+<style>
+
+/* The Modal (background) */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 99; /* Sit on top */
+    padding-top: 100px; /* Location of the box */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgb(0,0,0); /* Fallback color */
+    background-color: rgba(0,0,0,0.4); /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+    background-color: #fefefe;
+    margin: auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+.modal-content td {
+    vertical-align: top;
+    border: 1px solid #888;
+    padding: 10px;
+    color: #000;
+}
+
+.modal-content img {
+  max-width:100%;
+  height:auto;
+  max-height:100%;
+  }
+
+
+/* The Close Button */
+.close {
+    color: #aaaaaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+</style>
+
+
+<!-- The Modal -->
+<div id="myModal" class="modal">
+
+  <!-- Modal content -->
+  <div id="myModalContent" class="modal-content">
+    <span class="close">&times;</span>
+    <div id="overwriteThisDiv">
+
+    </div>
+  </div>
+</div>
+
+    <CoveoV2:SearchInterface name="Search" mobile="false" />
+
+    <script>          
+        $(document).ready(function() {
+        
+            $("#btnDoSomethingLikeExport").click(function(){
+            
+                // display from the checkbox selected items (format in a table)
+                var record = [];
+                
+                $.each($("input[name='SelectItem']:checked"), function(){            
+                    record.push($(this).val());
+                });
+              
+                if(record.length > 0){   
+                    var HTML = "<table style='table-layout:fixed;width:100%'><tr>";
+                    record.forEach(function(item, index) {
+                        HTML += "<td><table><th>Item " + (index + 1) + " <a href='https://na50.salesforce.com/500/e?retURL=%2F500%2Fo' target='_blank'>Reserve Room</a></th><tr><td>" + item + "</td></tr></th></table></td>";
+                    });
+                    HTML += "</tr></table>";
+                    overWrite.innerHTML = HTML;
+                } else {
+                    overWrite.innerHTML = '<div>Please select at least one value</div>';
+                }                   
+              
+                modal.style.display = "block";
+            
+            });
+            
+        });
+        
+              
+// Get the modal
+var modal = document.getElementById('myModal');
+var overWrite = document.getElementById('overwriteThisDiv');
+
+// Get the <span> element that closes the modal
+var span = document.getElementsByClassName("close")[0];
+
+// When the user clicks on <span> (x), close the modal
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+// When the user clicks anywhere outside of the modal, close it
+window.onclick = function(event) {
+    if (event.target == modal) {    
+        modal.style.display = "none";
+    }
+}
+            
+</script>    
+    
+
+</apex:page>
