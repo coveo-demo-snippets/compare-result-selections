@@ -3,8 +3,7 @@
 This code works on a Visualforce page. The use case is to compare selections on a hotel, like you would do with Expedia search for example.
 
 1. It uses a TemplateLoader on the result layout for the hotel room to add a inputCheckbox on each result. In the Interface Editor, under CodeView, you can add this code.
-
-'''
+```
 <div id="search" class="CoveoSearchInterface" data-enable-history="true" data-design="new">
 
 
@@ -178,7 +177,7 @@ This code works on a Visualforce page. The use case is to compare selections on 
 
 
 <div class="CoveoFieldSuggestions" data-field="@concepts"></div></div>
-'''
+```
 
 
-2. On your Visualforce Page, you can include the code in *** file.
+2. On your Visualforce Page, you can include the code in compareResultItems.
